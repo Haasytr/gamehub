@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Toaster } from "sonner";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -22,6 +23,7 @@ export default function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark }} afterSignOutUrl="/">
       <html lang="en">
         <body className={inter.className}>
+          <Toaster theme="light" position="bottom-center" />
           <ThemeProvider
             attribute="class"
             forcedTheme="dark"
