@@ -9,7 +9,7 @@ interface KeyCardProps {
   value: string | null;
 }
 
-export function KeyCardProps({ value }: KeyCardProps) {
+export function KeyCard({ value }: KeyCardProps) {
   const [show, setShow] = useState(false);
 
   return (
@@ -20,14 +20,14 @@ export function KeyCardProps({ value }: KeyCardProps) {
           <div className="w-full flex items-center gap-x-2">
             <Input
               value={value || ""}
-              type="password"
+              type={show ? "text" : "password"}
               disabled
               placeholder="Streamkey"
             />
             <CopyButton value={value || ""} />
           </div>
-          <Button size="sm" variant="link">
-            Show
+          <Button size="sm" variant="link" onClick={() => setShow(!show)}>
+            {show ? "Hide" : "Show"}
           </Button>
         </div>
       </div>

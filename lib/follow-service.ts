@@ -17,7 +17,15 @@ export async function getFollowedUser() {
         },
       },
       include: {
-        following: true,
+        following: {
+          include: {
+            Stream: {
+              select: {
+                isLive: true,
+              },
+            },
+          },
+        },
       },
     });
 
