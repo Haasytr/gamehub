@@ -10,6 +10,7 @@ import { Video, VideoSkeleton } from "./video";
 import { Chat, ChatSkeleton } from "./chat";
 import { ChatToggle } from "./chat-toggle";
 import { Header, HeaderSkeleton } from "./header";
+import { InfoCard } from "./info-card";
 
 interface StreamPlayerProps {
   user: User & { Stream: Stream | null };
@@ -24,8 +25,6 @@ export const StreamPlayer = ({
 }: StreamPlayerProps) => {
   const { token, name, identity } = useViewerToken(user.id);
   const { collapsed } = useChatSidebar((state) => state);
-
-  console.log({ token, name, identity });
 
   if (!token || !name || !identity) {
     return <StreamPlayerSkeleton />;
@@ -55,6 +54,12 @@ export const StreamPlayer = ({
             imageUrl={user.imageUrl}
             isFollowing={isFollowing}
             name={stream.name}
+          />
+          <InfoCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
